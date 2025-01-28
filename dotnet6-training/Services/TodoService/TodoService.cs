@@ -4,19 +4,28 @@ using dotnet6_training.Models.Validators;
 
 namespace dotnet6_training.Services.TodoService;
 
-public class TodoService : ITodoService
+public   class TodoService :   ITodoService
 {
-    private readonly ITodoRepository _todoRepository;
+
+
+
+
+            private readonly ITodoRepository _todoRepository;     
+
+
+
+
+    
     public TodoService(ITodoRepository todoRepository)
     {
-        _todoRepository = todoRepository;
+        _todoRepository =        todoRepository;
     }
 
     public async Task<ResponseResult<IReadOnlyList<TodoResponse>>> ReadOnlyGetAll(CancellationToken cancellationToken)
     {
         var todos = await _todoRepository.ReadOnlyGet(cancellationToken);
 
-        var response = todos.Data.ToResponse();
+        var response = todos.Data.ToResponse;
 
         return new ResponseResult<IReadOnlyList<TodoResponse>>(response).StatusCode(ApiStatusCode.Success).ToResult();
     }
